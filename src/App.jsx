@@ -6,7 +6,7 @@ function App() {
   const [code, setCode] = useState('')
   const [language, setLanguage] = useState('JavaScript')
   const [review, setReview] = useState(false)
-  const lineCount = code.length === 0 ? 0 : code.split('\n').length
+  const lineCount = code.trim() === '' ? 0 : code.split('\n').length
   const characterCount = code.length
   function handleReview() {
     if (!code.trim()) {
