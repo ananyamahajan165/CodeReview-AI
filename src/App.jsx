@@ -6,7 +6,8 @@ function App() {
   const [code, setCode] = useState('')
   const [language, setLanguage] = useState('JavaScript')
   const [review, setReview] = useState(false)
-
+  const lineCount = code.length === 0 ? 0 : code.split('\n').length
+  const characterCount = code.length
   function handleReview() {
     if (!code.trim()) {
       alert('Please paste your code first.')
@@ -93,7 +94,7 @@ function App() {
               <div className="editor-top">
                 <div className="window-dots"><i /><i /><i /></div>
                 <span>main.{language === 'Python' ? 'py' : language === 'Java' ? 'java' : language === 'C++' ? 'cpp' : language === 'TypeScript' ? 'ts' : 'js'}</span>
-                <span>{code.split('\n').length} lines</span>
+                <span>{lineCount} lines</span>
               </div>
               <textarea
                 value={code}
@@ -105,7 +106,10 @@ function App() {
                 spellCheck="false"
               />
             </div>
-
+            <div className="code-stats">
+            <span>{lineCount} lines</span>
+            <span>{characterCount} characters</span>
+            </div>
             <div className="editor-footer">
               <span>⌘ Secure workspace · Code stays in this demo</span>
               <button onClick={handleReview}>✦ Review Code <span>→</span></button>

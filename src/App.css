@@ -410,3 +410,11 @@ h1 span {
     flex-direction: column;
   }
 }
+
+.code-stats {
+  display: flex;
+  gap: 16px;
+  color: #858a9d;
+  font-size: 11px;
+  margin-top: 12px;
+}
