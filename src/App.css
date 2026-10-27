@@ -406,10 +406,13 @@ h1 span {
   }
 
   .editor-footer {
-    align-items: flex-start;
-    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    }
   }
-}
 
 .code-stats {
   display: flex;
@@ -417,4 +420,18 @@ h1 span {
   color: #858a9d;
   font-size: 11px;
   margin-top: 12px;
+}
+
+.clear-button {
+  background: transparent;
+  color: #c4b5fd;
+  border: 1px solid #51416f;
+  border-radius: 7px;
+  padding: 11px 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.clear-button:hover {
+  background: #201932;
 }

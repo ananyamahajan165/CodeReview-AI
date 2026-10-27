@@ -112,6 +112,15 @@ function App() {
             </div>
             <div className="editor-footer">
               <span>⌘ Secure workspace · Code stays in this demo</span>
+              <button
+              className="clear-button"
+              onClick={() => {
+              setCode('')
+              setReview(false)
+            }}
+          >
+          Clear Code
+          </button>
               <button onClick={handleReview}>✦ Review Code <span>→</span></button>
             </div>
           </section>
