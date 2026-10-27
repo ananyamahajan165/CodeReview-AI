@@ -8,14 +8,21 @@ function App() {
   const [review, setReview] = useState(false)
   const lineCount = code.trim() === '' ? 0 : code.split('\n').length
   const characterCount = code.length
-  function handleReview() {
-    if (!code.trim()) {
-      alert('Please paste your code first.')
-      return
-    }
-
-    setReview(true)
+  
+function handleReview() {
+  if (code.trim() === '') {
+    alert('Please paste your code before reviewing.')
+    return
   }
+
+  if (code.trim().length < 5) {
+    alert('Please enter a little more code to review.')
+    return
+  }
+
+  setReview(true)
+}
+  
 
   return (
     <div className="app">
