@@ -116,9 +116,9 @@ async function handleReview() {
               <textarea
                 value={code}
                 onChange={(e) => {
-                  setCode(e.target.value)
-                  setReview(false)
-                }}
+  setCode(e.target.value)
+  setReview(false)
+}}
                 placeholder={'// Paste your code here...\n\nfunction example() {\n  // Your code goes here\n}'}
                 spellCheck="false"
               />
