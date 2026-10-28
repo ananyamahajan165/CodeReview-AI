@@ -6,10 +6,12 @@ function App() {
   const [code, setCode] = useState('')
   const [language, setLanguage] = useState('JavaScript')
   const [review, setReview] = useState(false)
+  const [isReviewing, setIsReviewing] = useState(false)
   const lineCount = code.trim() === '' ? 0 : code.split('\n').length
   const characterCount = code.length
   
-function handleReview() {
+
+async function handleReview() {
   if (code.trim() === '') {
     alert('Please paste your code before reviewing.')
     return
@@ -20,8 +22,16 @@ function handleReview() {
     return
   }
 
+  setIsReviewing(true)
+  setReview(false)
+
+  // Demo loading delay; no actual AI analysis happens yet.
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+
   setReview(true)
+  setIsReviewing(false)
 }
+
   
 
   return (
@@ -128,7 +138,12 @@ function handleReview() {
           >
           Clear Code
           </button>
-              <button onClick={handleReview}>✦ Review Code <span>→</span></button>
+              
+<button onClick={handleReview} disabled={isReviewing}>
+  {isReviewing ? 'Reviewing...' : '✦ Review Code'}
+  {!isReviewing && <span>→</span>}
+</button>
+
             </div>
           </section>
 
