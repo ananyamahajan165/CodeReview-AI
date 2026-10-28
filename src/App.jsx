@@ -129,6 +129,22 @@ async function handleReview() {
             </div>
             <div className="editor-footer">
               <span>⌘ Secure workspace · Code stays in this demo</span>
+
+<button
+  className="copy-button"
+  onClick={async () => {
+    try {
+      await navigator.clipboard.writeText(code)
+      alert('Code copied successfully!')
+    } catch {
+      alert('Unable to copy code. Please copy it manually.')
+    }
+  }}
+  disabled={!code.trim()}
+>
+  Copy Code
+</button>
+
               <button
               className="clear-button"
               onClick={() => {
