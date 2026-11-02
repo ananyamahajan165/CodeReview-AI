@@ -33,6 +33,34 @@ async function handleReview() {
 }
 
   
+function handleDownload() {
+  if (!code.trim()) {
+    alert('Please enter code before downloading.')
+    return
+  }
+
+  const extensions = {
+    JavaScript: 'js',
+    Python: 'py',
+    Java: 'java',
+    'C++': 'cpp',
+    TypeScript: 'ts'
+  }
+
+  const blob = new Blob([code], { type: 'text/plain' })
+  const url = URL.createObjectURL(blob)
+
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `code-review.${extensions[language] || 'txt'}`
+
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+
+  URL.revokeObjectURL(url)
+}
+
 
   return (
     <div className="app">
@@ -131,6 +159,15 @@ async function handleReview() {
               <span>⌘ Secure workspace · Code stays in this demo</span>
 
 <button
+  className="download-button"
+  onClick={handleDownload}
+  disabled={!code.trim()}
+>
+  Download Code
+</button>
+
+<button
+
   className="copy-button"
   onClick={async () => {
     try {

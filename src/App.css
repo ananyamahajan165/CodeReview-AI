@@ -479,3 +479,26 @@ h1 span {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+
+
+.download-button {
+  background: #252039;
+  color: #c4b5fd;
+  border: 1px solid #51416f;
+  border-radius: 7px;
+  padding: 11px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.download-button:hover:not(:disabled) {
+  background: #35284f;
+}
+
+.download-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
