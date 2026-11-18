@@ -1,0 +1,28 @@
+# Render Blueprint: one backend web service + one static frontend.
+# Secrets (marked sync: false) are entered in the Render dashboard — never commit them.
+services:
+  - type: web
+    name: codereview-ai-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - { key: NODE_ENV, value: production }
+      - { key: MONGODB_URI, sync: false }          # MongoDB Atlas connection string
+      - { key: JWT_SECRET, generateValue: true }
+      - { key: CLIENT_URL, sync: false }           # your frontend URL, e.g. https://codereview-ai.onrender.com
+      - { key: AI_PROVIDER, value: anthropic }
+      - { key: AI_API_KEY, sync: false }
+      - { key: AI_MODEL, sync: false }
+  - type: web
+    name: codereview-ai-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - { key: VITE_API_URL, sync: false }         # e.g. https://codereview-ai-api.onrender.com/api
+    routes:
+      - { type: rewrite, source: /*, destination: /index.html }
